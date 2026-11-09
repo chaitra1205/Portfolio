@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design system: Ivory #F2EBDD · Emerald #08765A · Vermilion #E34234 — nothing else. */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-ivory font-sans text-emerald antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+  ::selection {
+    @apply bg-vermilion text-ivory;
+  }
+  :focus-visible {
+    outline: 2px solid theme('colors.vermilion');
+    outline-offset: 4px;
+  }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: theme('colors.ivory'); }
+  ::-webkit-scrollbar-thumb {
+    background: theme('colors.emerald');
+    border: 3px solid theme('colors.ivory');
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  /* Experience: independently scrolling right-hand panel (desktop) */
+  .exp-panel {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(242 235 221 / 0.35) transparent;
+  }
+  .exp-panel::-webkit-scrollbar { width: 6px; }
+  .exp-panel::-webkit-scrollbar-track { background: transparent; }
+  .exp-panel::-webkit-scrollbar-thumb {
+    background: rgb(242 235 221 / 0.35);
+    border: 0;
+    border-radius: 999px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
